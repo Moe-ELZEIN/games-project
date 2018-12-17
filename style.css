@@ -13,16 +13,32 @@ main{
   margin: auto;
   top: 100px;
   height: 500px;
-  width: 500px;
+  width: 700px;
   outline: 2px solid black;
-  background-color: black;
+  background-position: 0 0;
+  background-image: url("Images/mario-background.png");
+  -webkit-background-size: cover;
+  background-repeat: repeat-x;
+  animation: animate 1500s linear infinite;
+
+}
+
+@keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+
+  }
+
 }
 
 .character {
   position: relative;
   height: 50px;
   width: 50px;
-  border: 1px black;
   background-color: blue;
-  top: 400px;
+  top: 350px;
+  left: 75px;
 }
