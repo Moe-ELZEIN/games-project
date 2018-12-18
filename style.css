@@ -19,7 +19,7 @@ main{
   background-image: url("Images/mario-background.png");
   -webkit-background-size: cover;
   background-repeat: repeat-x;
-  animation: animate 1500s linear infinite;
+  animation: animate 7s linear infinite;
 
 }
 
@@ -38,7 +38,47 @@ main{
   position: relative;
   height: 50px;
   width: 50px;
-  background-color: blue;
   top: 350px;
-  left: 75px;
+  left: 100px;
+  background-image: url("Images/ferdi.png");
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.floor {
+  position: relative;
+  height: 100px;
+  width: 700px;
+  top: 350px;
+  background-image: url("Images/mario-bricks.png");
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.obstacle1 {
+  position: absolute;
+  height: 30px;
+  width: 50px;
+  top: 370px;
+  left: 625px;
+  background-color: black;
+}
+
+.scoreboard {
+  position: relative;
+  height: 30px;
+  width: 95px;
+  bottom: 203px;
+  left: 600px;
+  border: 2px solid black;
+  color: white;
+}
+
+.instructions {
+  position: relative;
+  height: 50px;
+  width: 95px;
+  bottom: 148px;
+  border: 2px solid black;
+  color: white;
 }
