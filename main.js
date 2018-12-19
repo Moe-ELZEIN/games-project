@@ -1,9 +1,10 @@
 // No javascript will run until the html code has run
 $(function(){
+  console.log("test")
 
   var $character = $(".character");
   var $container = $(".container");
-  var $obstacle1 = $(".obstacle1");
+  var $obstacle1 = $("#obstacle1");
 
   setUpEvents();
 
@@ -41,44 +42,31 @@ $(function(){
 
   getPosition();
 
+  setInterval(createObject, 1000);
 
-  //  setInterval(moveObstacle,1000);
+  function createObject() {
+    var obstacle = $("<div id=obstacle1></div>");
+    obstacle.css("visibility", "visible");
+    $(".container").append(obstacle);
+    setInterval(moveObstacle(obstacle),1000);
+  }
 
-    // setTimeout(remove, 3400);
-setInterval(moveObstacleUsingCSS,10);
+  function getPosition(){
+    var box1 = document.getElementById('obstacle1')
+    var boundingRectangle = box1.getBoundingClientRect()
+  }
 
+  function moveObstacle(obstacle) {
+    obstacle.animate({
+      'left' : '0px'
+    }, 2000);
+    setTimeout(function(){
+      obstacle.remove();
+    }, 1950);
+  }
 
-})
-
-function getPosition(){
-  var box1 = document.getElementsByClassName('obstacle1')[0]
-  var boundingRectangle = box1.getBoundingClientRect()
-}
-
-function trackObstacle(){
-  var box1 = document.getElementsByClassName('obstacle1')[0]
-  var boundingRectangle = box1.getBoundingClientRect()
-  console.log(boundingRectangle.top + ' ' + boundingRectangle.right + ' ' + boundingRectangle.bottom + ' ' + boundingRectangle.left);
-}
-
-// function moveObstacle() {
-//   $('.obstacle1').animate({
-//     'left' : '0px'
-//   }, 2000);
-//   console.log('arrived!!!!')
-//   trackObstacle();
-// }
-
-// This sets the position of the obstacle1 and moves it along the x-axis by -5 every 10 milliseconds
-var xPosition = 625;
-function moveObstacleUsingCSS(){
-  xPosition = xPosition -5;
-  xPositionAsString = xPosition + 'px';
-  $('.obstacle1').css('left',xPositionAsString);
-}
-
-function remove() {
-  $(".obstacle1").remove();
-}
-
-// This is incrementing the score by 10 the longer you survive
+  function remove() {
+    $("#obstacle1").remove();
+  }
+  
+});
