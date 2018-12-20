@@ -1,7 +1,5 @@
 // No javascript will run until the html code has run
 $(function(){
-  console.log("test")
-
   var $character = $(".character");
   var $container = $(".container");
   var $obstacle1 = $("#obstacle1");
@@ -49,6 +47,9 @@ $(function(){
     obstacle.css("visibility", "visible");
     $(".container").append(obstacle);
     setInterval(moveObstacle(obstacle),1000);
+    setInterval(function(){
+      checkForCollision(obstacle);
+    });
   }
 
   function getPosition(){
@@ -68,5 +69,17 @@ $(function(){
   function remove() {
     $("#obstacle1").remove();
   }
-  
+
+  setInterval(checkForCollision, 10);
+
+  function checkForCollision(obstacle) {
+    // console.log(obstacle);
+    if($character.collision(obstacle).length > 0) {
+      console.log("COLLISION");
+    }
+  }
+
+  // console.log($obstacle1[0])
+
+
 });
