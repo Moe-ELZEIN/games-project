@@ -1,0 +1,47 @@
+@font-face {
+  font-family: MarioFont;
+  src: url("Font/SuperMario256.ttf");
+}
+
+main{
+  height: 100%;
+  width: 100%;
+  border: 2px black;
+  background-image: url("Images/Acid smiley.jpg");
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  position: absolute;
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  top: 100px;
+  height: 500px;
+  width: 700px;
+  outline: 3px solid white;
+  background-color: black;
+}
+
+.startGame h1{
+  font-family: MarioFont;
+  text-align: center;
+  font-size: 70px;
+  color: white;
+  }
+
+.gameInstructions {
+  font-family: MarioFont;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+}
+
+.instructions {
+  position: relative;
+  font-family: MarioFont;
+  text-align: left;
+  left: 20px;
+  font-size: 30px;
+  color: purple;
+}
