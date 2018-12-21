@@ -3,6 +3,7 @@ $(function(){
   var $character = $(".character");
   var $container = $(".container");
   var $obstacle1 = $("#obstacle1");
+  var score = 0;
 
   setUpEvents();
 
@@ -11,13 +12,11 @@ $(function(){
     $(document.documentElement).keydown(function(event) {
       if (event.keyCode == 32) {
         jump();
+        var jumpSound = new Audio("Audio/Mario Jump Sound.mp3");
+        jumpSound.play();
       }
     });
   }
-
-  // function Instructions() {
-  //   alert("1. Use the space key to jump, 2.Avoid the obstacles to increase score, 3. If you hit an obstacle then you lose.")
-  // }
 
 // This function handles the behaviour associated when jumping
   function jump() {
@@ -30,7 +29,7 @@ $(function(){
     $character.animate({
       'top': "175px"
     }, "fast");
-// This makes the character Div go down to 275px from the top then back up to 400px
+// This makes the character Div go down to 175px from the top then back up to 350px
     $character.animate({
       'top': "350px"
     });
@@ -40,8 +39,10 @@ $(function(){
 
   getPosition();
 
-  setInterval(createObject, 1000);
+// This creates an object every 2 seconds
+  var objectCreation = setInterval(createObject, 2000);
 
+//
   function createObject() {
     var obstacle = $("<div id=obstacle1></div>");
     obstacle.css("visibility", "visible");
@@ -57,6 +58,8 @@ $(function(){
     var boundingRectangle = box1.getBoundingClientRect()
   }
 
+// This moves or animates the obstacle left until it reaches 0px over 2 seconds
+// Then it calles the remove function to remove the obstacle
   function moveObstacle(obstacle) {
     obstacle.animate({
       'left' : '0px'
@@ -66,20 +69,34 @@ $(function(){
     }, 1950);
   }
 
+// This is the remove obstacle function
   function remove() {
     $("#obstacle1").remove();
   }
 
   setInterval(checkForCollision, 10);
+  setInterval(incrementScore, 1000);
 
+// Increases the score by 10 the longer you survive
+  function incrementScore() {
+    score += 10;
+    $(".scoreboard").html(score);
+  }
+
+// This checks if the character and the obstacle are colliding, if they do, stops making obstacles printing game over and your score
   function checkForCollision(obstacle) {
-    // console.log(obstacle);
     if($character.collision(obstacle).length > 0) {
-      console.log("COLLISION");
+      clearInterval(objectCreation);
+      $(".finalScore").html("score: " + score);
+      $(".gameOver").css("display", "block");
     }
   }
 
-  // console.log($obstacle1[0])
+// This refresh's the page when you click try again so you can play again
+  var reset = document.getElementById("refresh")
+  reset.addEventListener("click", refresh);
 
-
+  function refresh() {
+    location.reload();
+  }
 });

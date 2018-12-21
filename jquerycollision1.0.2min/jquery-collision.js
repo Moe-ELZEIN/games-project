@@ -65,10 +65,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				this.x2 = parseInt(proto.css("width" )) || 0;
 				this.y2 = parseInt(proto.css("height")) || 0;
 				this.x2 += this.x1;
-				this.x2 += (parseInt(proto.css("margin-left"))||0) + (parseInt(proto.css("border-left"))||0) + (parseInt(proto.css("padding-left"))||0) + 
+				this.x2 += (parseInt(proto.css("margin-left"))||0) + (parseInt(proto.css("border-left"))||0) + (parseInt(proto.css("padding-left"))||0) +
 									 (parseInt(proto.css("padding-right"))||0) + (parseInt(proto.css("border-right"))||0) + (parseInt(proto.css("margin-right"))||0);
 				this.y2 += this.y1;
-				this.y2 += (parseInt(proto.css("margin-top"))||0) + (parseInt(proto.css("border-top"))||0) + (parseInt(proto.css("padding-top"))||0) + 
+				this.y2 += (parseInt(proto.css("margin-top"))||0) + (parseInt(proto.css("border-top"))||0) + (parseInt(proto.css("padding-top"))||0) +
 									 (parseInt(proto.css("padding-bottom"))||0) + (parseInt(proto.css("border-bottom"))||0) + (parseInt(proto.css("margin-bottom"))||0);
 			}
 			else
@@ -96,7 +96,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			this.dir = proto.dir;
 		}
 	}
-	
+
 	CollisionCoords.prototype.innerContainer = function()
 	{
 		var clone = new CollisionCoords( this );
@@ -126,7 +126,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		this.y2 += dy;
 		return this;
 	};
-	
+
 	CollisionCoords.prototype.update = function( obj )
 	{
 		if( "x1" in obj ) this.x1 = obj["x1"];
@@ -155,22 +155,22 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		if( "dir" in obj ) this.x1 = obj["dir"];
 		return this;
 	};
-	
+
 	CollisionCoords.prototype.width   = function() { return ( this.x2 - this.x1 );     };
 	CollisionCoords.prototype.height  = function() { return ( this.y2 - this.y1 );     };
 	CollisionCoords.prototype.centerx = function() { return ( this.x1 + this.x2 ) / 2; };
 	CollisionCoords.prototype.centery = function() { return ( this.y1 + this.y2 ) / 2; };
 
-	
+
 	CollisionCoords.prototype.toString = function()
 	{
 		return ( this.proto["get"] ? "#"+this.proto.get(0).id : "" ) + "["+[this.x1,this.y1,this.x2,this.y2].join(",")+"]";
 	};
-	
+
 	// the big mistake in a lot of collision-detectors,
 	// make floating-point arithmetic work for you, not against you:
 	CollisionCoords.EPSILON = 0.001;
-	
+
 	CollisionCoords.prototype.containsPoint = function( x, y, inclusive )
 	{
 		if( ! inclusive ) inclusive = false;
@@ -181,7 +181,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		else
 			return false;
 	};
-	
+
 	CollisionCoords.prototype.overlaps = function( other, inclusive )
 	{
 		var hit = this._overlaps( other, inclusive );
@@ -241,7 +241,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}
 		return hit || [];
 	};
-	
+
 	CollisionCoords.prototype._protrusion = function( area, dir, list )
 	{
 		var o = this.overlaps( new CollisionCoords( area ), false );
@@ -270,7 +270,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		list = this._protrusion( { x1:n, y1:n, x2:l, y2:t }, "NW", list );
 		return list;
 	};
-	
+
 	function Collision( targetNode, obstacleNode, overlapCoords, overlapType )
 	{
 		this.target        = targetNode;
@@ -278,7 +278,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		this.overlap       = overlapCoords;
 		this.overlapType   = overlapType;
 	}
-	
+
 	Collision.prototype.distance = function( other )
 	{
 		var tc = c.target;
@@ -296,7 +296,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		if( containment ) this.containment = containment;
 		else              this.containment = null;
 	}
-	
+
 	CollisionFactory.prototype.getCollisions = function( overlapType )
 	{
 		if( this.collisions !== null ) return this.collisions;
@@ -307,7 +307,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		if( ! overlapType ) overlapType = "collision";
 		if( overlapType != "collision" && overlapType != "protrusion" ) return [];
 		var c = [];
-		var t = this.targets;  
+		var t = this.targets;
 		var o = this.obstacles;
 		for( var ti=0; ti<t.length; ti++ )
 		{
@@ -329,7 +329,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	//
 	// Setup
 	//
-	
+
 	function makeCoordsArray( j )
 	{
 		return $(j).get().map(function(e,i,a){ return new CollisionCoords( $(e) ); });
@@ -368,13 +368,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		if( ! as ) array = $.map( ov, function(e,i,a){ return e.obstacle.proto; } );
 		else       array = $.map( ov, function(e,i,a){ var xoff = e.overlap.x1;
 																								var yoff = e.overlap.y1;
-																								if( rel && rel != "body" ) 
-																								{ 
+																								if( rel && rel != "body" )
+																								{
 																									var r = rel == "collider" ? $(e.target.proto) :
 																													rel == "obstacle" ? $(e.obstacle.proto) :
 																																							$(rel);
-																									if( r.length>0 ) 
-																									{ 
+																									if( r.length>0 )
+																									{
 																										var roff = r.offset();
 																										xoff -= roff.left;
 																										yoff -= roff.top;

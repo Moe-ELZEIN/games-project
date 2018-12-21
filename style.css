@@ -1,3 +1,8 @@
+@font-face {
+  font-family: MarioFont;
+  src: url("Font/SuperMario256.ttf");
+}
+
 main{
   height: 100%;
   width: 100%;
@@ -62,24 +67,56 @@ main{
   width: 50px;
   top: 370px;
   left: 650px;
-  background-color: black;
+  background-image: url("Images/mario-obstacle.webp");
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .scoreboard {
   position: relative;
-  height: 30px;
-  width: 95px;
-  bottom: 203px;
-  left: 600px;
-  border: 2px solid black;
-  color: white;
+  font-family: MarioFont;
+  font-size: 30px;
+  bottom: 145px;
+  left: 590px;
+  color: black;
 }
 
-.instructions {
-  position: relative;
-  height: 50px;
-  width: 95px;
-  bottom: 148px;
-  border: 2px solid black;
+.gameOver {
+  display: none;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  height: 500px;
+  width: 700px;
+  outline: 3px solid white;
+  background-color: black;
   color: white;
+  text-align: center;
+}
+
+.gameOver h1{
+  font-family: MarioFont;
+  margin-top: 200px;
+  font-size: 70px;
+}
+
+.gameOver p{
+  font-family: MarioFont;
+  margin-top: 20px;
+  font-size: 40px;
+}
+
+.title h1{
+  position: absolute;
+  text-align: center;
+  font-family: MarioFont;
+  color: dark blue;
+  margin-top: 50px;
+  margin-left: 115px;
+  font-size: 60px;
+}
+
+#refresh {
+  font-family: MarioFont;
+  cursor: pointer;
 }
