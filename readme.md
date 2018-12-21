@@ -1,14 +1,12 @@
-#Happy Runner Game Project 
+# Happy Runner Game Project
 
 I was tasked with creating a game using HTML, CSS, Javascript and Jquery in the space of one week.
 
-Below is a link to my website
+# Below is a link to my website
 
-Screenshot of my game:
+https://moe-elzein.github.io/games-project/
 
-format:
-
-Instructions on how to play the game
+# Instructions on how to play the game
 
 1. Use the space key to jump
 
